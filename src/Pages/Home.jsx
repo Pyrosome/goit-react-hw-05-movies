@@ -1,10 +1,9 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const Home = () => {
 
-    useEffect(() => {
-        //http запрос (api)
-    }, [])
+    // useEffect(() => {
+    // }, [])
 
     return (
         <div>Home 🪲</div>
