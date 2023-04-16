@@ -1,12 +1,11 @@
-//import { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 
-const Movies = ({movies}) => {
+const Movies = () => {
 
-    console.log(movies);
-    // useEffect(() => {
-    //     http запрос (api)
-    // }, [])
+    useEffect(() => {
+        // http запрос (api)
+    }, [])
 
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation(); 
@@ -20,6 +19,7 @@ const Movies = ({movies}) => {
         return setSearchParams({query: value})
     }
 
+    const movies = [];
     const query = searchParams.get('query') ?? '';
     const visibleMovies = movies.filter(movie => movie.toLowerCase().includes(query));
 

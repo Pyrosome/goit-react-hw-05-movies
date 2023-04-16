@@ -1,15 +1,23 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { getMovieDetails } from "service/APIMovieSearch";
 
 const MovieDetails = () => {
 
-    const location = useLocation(); 
-    console.log(location);
-    
+    const location = useLocation();     
     const backLocation = useRef(location.state?.from ?? '/movies')
-
     const { movieId } = useParams();
-    console.log(movieId);
+    const [movie, setMovie] = useState([]);
+
+    useEffect(() => {
+        getMovieDetails(movieId)
+            .then(res => {
+                setMovie(res.data)
+                console.log(movie.id, movie.poster_path, movie.title, movie.overview, movie.genres, );
+            })
+    }, [])
 
     return (
         <div>

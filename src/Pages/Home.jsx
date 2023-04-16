@@ -1,22 +1,31 @@
-// import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { getTrendingMovies } from "service/APIMovieSearch";
 
-const Home = ({movies}) => {
+const Home = ({}) => {
 
-    // useEffect(() => {
-    // }, [])
-
+    
+    const [movies, setMovies] = useState([]);
     const location = useLocation(); 
-    console.log(location);
+    
+    useEffect(() => {
+        getTrendingMovies()
+            .then(res => {
+                setMovies(res.data.results);
 
+            })
+    }, [])
+
+    
     return (
-        <div>Home 🪲
+        <div>
+            <h1>Home 🎥</h1>
                 
-            <ul>{movies.map(movie => {
+            <ul style={{listStyle: 'upper-roman'}}
+            >{movies.map(movie => {
                 return (
-                    <li key={movie}>
-                        <Link to={`/movies/${movie}`} state={{from: location}}>{movie}</Link>
+                    <li key={movie.id}>
+                        <Link to={`/movies/${movie.id}`} state={{from: location}}>{movie.title}</Link>
                     </li>
                 )
             })}</ul>
