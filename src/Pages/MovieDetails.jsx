@@ -13,16 +13,38 @@ const MovieDetails = () => {
 
     return (
         <div>
-            <Link to={backLocation.current}>{'<- Перейти назад'}</Link>
-            <h1>Movie Details 🦇  : movie { movieId }</h1>
-            <ul>
-                <li>
-                    <Link to='cast'>Cast</Link>
-                </li>
-                <li>
-                    <Link to='reviews'>Reviews</Link>
-                </li>
-            </ul>
+            <Link to={backLocation.current}>{'<- Перейти назад'}</Link><br/><br/>
+
+            <div style={{display: 'flex'}} >
+                <img src="https://m.media-amazon.com/images/I/51QjxZnO6XL._AC_UF894,1000_QL80_.jpg" alt="only lovers left alive poster"
+                style={{maxWidth: '300px'}} />
+                <ul>
+                    <li>
+                        <h2>Movie title (year)</h2>
+                        <p>User score: n%</p>
+                    </li>
+                    <li>
+                        <h1>Overview</h1>
+                        <p>short descr</p>
+                    </li>
+                    <li>
+                        <h1>Genres</h1>
+                        <p>movie genres in flexlist</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Additional information</h3>
+                <ul>
+                    <li>
+                        <Link to='cast'>Cast</Link>
+                    </li>
+                    <li>
+                        <Link to='reviews'>Reviews</Link>
+                    </li>
+                </ul>
+            </div>
 
             <Outlet/>
 
