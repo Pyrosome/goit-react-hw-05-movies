@@ -15,25 +15,28 @@ const MovieDetails = () => {
         getMovieDetails(movieId)
             .then(res => {
                 setMovie(res.data)
-                console.log(movie.id, movie.poster_path, movie.title, movie.overview, movie.genres, );
+            })
+            .catch(error => {
+                console.log(error);
             })
     }, [])
-
+    
+    const { id, poster_path, title, release_date, overview, genres } = movie;
     return (
         <div>
             <Link to={backLocation.current}>{'<- Перейти назад'}</Link><br/><br/>
 
             <div style={{display: 'flex'}} >
-                <img src="https://m.media-amazon.com/images/I/51QjxZnO6XL._AC_UF894,1000_QL80_.jpg" alt="only lovers left alive poster"
+                <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : ''} alt={title}
                 style={{maxWidth: '300px'}} />
                 <ul>
                     <li>
-                        <h2>Movie title (year)</h2>
+                        <h2>{title} {release_date ? `(${release_date.slice(0, 4)})` : ''}</h2>
                         <p>User score: n%</p>
                     </li>
                     <li>
                         <h1>Overview</h1>
-                        <p>short descr</p>
+                        <p>{overview}</p>
                     </li>
                     <li>
                         <h1>Genres</h1>
@@ -46,10 +49,10 @@ const MovieDetails = () => {
                 <h3>Additional information</h3>
                 <ul>
                     <li>
-                        <Link to='cast'>Cast</Link>
+                        <Link to='cast' id={id}>Cast</Link>
                     </li>
                     <li>
-                        <Link to='reviews'>Reviews</Link>
+                        <Link to='reviews' id={id}>Reviews</Link>
                     </li>
                 </ul>
             </div>

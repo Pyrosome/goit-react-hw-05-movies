@@ -12,7 +12,9 @@ const Home = ({}) => {
         getTrendingMovies()
             .then(res => {
                 setMovies(res.data.results);
-
+            })
+            .catch(error => {
+                console.log(error);
             })
     }, [])
 
