@@ -1,4 +1,5 @@
 //import { useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 const Movies = () => {
@@ -7,7 +8,7 @@ const Movies = () => {
     //     http запрос (api)
     // }, [])
 
-    const movies = ['nemo', 'doll', 'alice', 'king', 'sand']
+    const [movies, setMovies] = useState(['nemo', 'doll', 'alice', 'king', 'sand'])
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation(); 
     console.log(location);
