@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getTrendingMovies } from "service/APIMovieSearch";
 
-const Home = ({}) => {
-
+const Home = () => {
     
     const [movies, setMovies] = useState([]);
     const location = useLocation(); 
