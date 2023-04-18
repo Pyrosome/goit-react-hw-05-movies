@@ -21,9 +21,9 @@ const Home = ({}) => {
     
     return (
         <div>
-            <h1>Home 🎥</h1>
+            <h1>Trending this week 🎥</h1>
                 
-            <ul style={{listStyle: 'upper-roman'}}
+            <ul style={{listStyle: 'upper-roman', marginLeft: '50px'}}
             >{movies.map(movie => {
                 return (
                     <li key={movie.id}>

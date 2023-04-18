@@ -1,42 +1,61 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { getMoviesList } from "service/APIMovieSearch";
 
 const Movies = () => {
-
-    useEffect(() => {
-        // http запрос (api)
-    }, [])
-
+    const [query, setQuery] = useState('');
+    const [movies, setMovies] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    const location = useLocation(); 
-    console.log(location);
+    const location = useLocation();
+    const searchQuery = searchParams.get('query');
 
-    const updateQuery = evt => {
-        const {value} = evt.target
-        if (value === '') {
-            return setSearchParams({})
+    const handleChange = event => {
+        setQuery(event.target.value);
+    };
+    
+    useEffect(() => {
+        if (searchQuery === `` || searchQuery === null) {
+        return;
         }
-        return setSearchParams({query: value})
+        
+        getMoviesList(searchQuery)
+            .then(res => {
+                setMovies(res.data.results);
+            })
+            .catch(error => {
+            console.log(error);
+            return alert(`Sorry, please try again`);
+            })
+    }, [searchQuery]);
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        if (!query) {
+            setMovies([]);
+            return setSearchParams({ });
+        }
+
+        setSearchParams({ query: query });
+        setQuery('');  
     }
 
-    const movies = [];
-    const query = searchParams.get('query') ?? '';
-    const visibleMovies = movies.filter(movie => movie.toLowerCase().includes(query));
-
-    return (
-        <div>
-            <input type="text" value={query} onChange={updateQuery}/>
-            <button type='submit'> change query</button>
+        return (
+            <div style={{ paddingLeft: '20px' }}>
+                <form onSubmit={handleSubmit}>
+                <input type="text" value={query} onChange={handleChange} />
+                <button type='submit'>Search</button>
+                </form>
                 
-            <ul>{visibleMovies.map(movie => {
-                return (
-                    <li key={movie}>
-                        <Link to={`${movie}`} state={{from: location}}>{movie}</Link>
-                    </li>
-                )
-            })}</ul>
-        </div>
-    )
+                <ul>{movies ? movies.map(movie => {
+                    return (
+                        <li key={movie.id}>
+                            <Link to={`${movie.id}`} state={{ from: location }}>{movie.title}</Link>
+                        </li>
+                    )
+                }) : ''}</ul>
+            </div>
+        )
+    
 }
 
 export default Movies;
