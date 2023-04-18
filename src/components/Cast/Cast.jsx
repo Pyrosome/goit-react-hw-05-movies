@@ -17,7 +17,7 @@ export const Cast = () => {
                 console.log(error);
                 alert('We`re sorry! No crew data found.')
         })
-    }, [])
+    }, [movieId])
 
     return (
         <div>

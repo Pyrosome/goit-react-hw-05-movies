@@ -1,10 +1,8 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { Suspense } from "react";
 
 
 const Layout = () => {
-
-    const location = useLocation();
 
     return (
         <div>

@@ -16,7 +16,7 @@ export const Reviews = () => {
                 console.log(error);
                 alert('We`re sorry! No reviews found.')
         })
-    }, [])
+    }, [movieId])
 
     return (
         <div>

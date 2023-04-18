@@ -21,7 +21,7 @@ const MovieDetails = () => {
                 console.log(error);
                 alert('Sorry! We didn`t find any movie on this link.')
             })
-    }, [])
+    }, [movieId])
     
     const { id, poster_path, title, release_date, vote_average,  overview, genres } = movie;
     const year = release_date ? `(${release_date.slice(0, 4)})` : ''

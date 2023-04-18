@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-import { lazy, useState } from "react";
+import { lazy } from "react";
 import { Cast } from "./Cast/Cast";
 import { Reviews } from "./Reviews/Reviews";
  
